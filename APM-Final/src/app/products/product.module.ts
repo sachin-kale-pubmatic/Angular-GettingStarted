@@ -5,12 +5,17 @@ import { ConvertToSpacesPipe } from '../shared/convert-to-spaces.pipe';
 import { RouterModule } from '@angular/router';
 import { ProductDetailGuard } from './product-detail.guard';
 import { SharedModule } from '../shared/shared.module';
+import { CategoryFilterComponent } from './category-filter.component';
+import { CategoryStatisticsComponent } from './category-statistics.component';
+import { CategoryService } from './category.service';
 
 @NgModule({
   declarations: [
     ProductListComponent,
     ProductDetailComponent,
-    ConvertToSpacesPipe
+    ConvertToSpacesPipe,
+    CategoryFilterComponent,
+    CategoryStatisticsComponent
   ],
   imports: [
     RouterModule.forChild([
@@ -22,6 +27,9 @@ import { SharedModule } from '../shared/shared.module';
       }
     ]),
     SharedModule
+  ],
+  providers: [
+    CategoryService
   ]
 })
 export class ProductModule { }
