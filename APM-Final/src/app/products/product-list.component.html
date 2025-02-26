@@ -10,12 +10,18 @@
                [(ngModel)]='listFilter' />
       </div>
     </div>
-    <div class='row'
-         *ngIf='listFilter'>
+    <div class='row'>
       <div class='col-md-6'>
         <h4>Filtered by: {{listFilter}}</h4>
       </div>
     </div>
+    
+    <!-- Category Filter -->
+    <pm-category-filter
+      [categories]="categories"
+      (categorySelected)="onCategorySelected($event)">
+    </pm-category-filter>
+
     <div class='table-responsive'>
       <table class='table'
              *ngIf='products.length'>
@@ -29,6 +35,7 @@
             </th>
             <th>Product</th>
             <th>Code</th>
+            <th>Category</th>
             <th>Available</th>
             <th>Price</th>
             <th>5 Star Rating</th>
@@ -49,11 +56,12 @@
               </a>
             </td>
             <td>{{ product.productCode | lowercase | convertToSpaces:'-' }}</td>
+            <td>{{ product.categoryName }}</td>
             <td>{{ product.releaseDate }}</td>
             <td>{{ product.price | currency:'USD':'symbol':'1.2-2' }}</td>
             <td>
               <pm-star [rating]='product.starRating'
-                       (ratingClicked)='onRatingClicked($event)'>
+                      (ratingClicked)='onRatingClicked($event)'>
               </pm-star>
             </td>
           </tr>
@@ -62,7 +70,8 @@
     </div>
   </div>
 </div>
-<div *ngIf='errorMessage'
-     class='alert alert-danger'>
-  Error: {{ errorMessage }}
-</div>
+
+<!-- Category Statistics -->
+<pm-category-statistics
+  [products]="products">
+</pm-category-statistics>

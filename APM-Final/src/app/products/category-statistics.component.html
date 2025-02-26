@@ -1,0 +1,25 @@
+<div class="card mt-3">
+  <div class="card-header">
+    Category Statistics
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Products</th>
+            <th>Average Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let category of categoryStats | keyvalue">
+            <td>{{ category.key }}</td>
+            <td>{{ category.value }}</td>
+            <td>{{ averagePrices[category.key] | currency:'USD':'symbol':'1.2-2' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

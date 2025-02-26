@@ -7,4 +7,6 @@ export interface IProduct {
   description: string;
   starRating: number;
   imageUrl: string;
+  categoryId: number;
+  categoryName: string;
 }
